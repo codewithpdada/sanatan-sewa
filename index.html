@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanatan Sewa by Pratham Dada</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Devotional Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Top Garland Decoration Banner -->
+    <div class="garland-banner"></div>
+
+    <div class="app-container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <h1 class="brand-title">SANATAN SEWA</h1>
+            <p class="brand-subtitle">BY PRATHAM DADA</p>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="dashboard">
+            
+            <!-- LEFT PANEL: Navigation & Audio Player -->
+            <aside class="panel left-panel">
+                <!-- Deity Quick Links -->
+                <div class="deity-grid">
+                    <button class="deity-card active" onclick="selectDeity('Shri Shiva')">
+                        <i class="fa-solid fa-om"></i>
+                        <span>Shri Shiva</span>
+                    </button>
+                    <button class="deity-card" onclick="selectDeity('Shri Hanuman')">
+                        <i class="fa-solid fa-hand-holding-hand"></i>
+                        <span>Shri Hanuman</span>
+                    </button>
+                    <button class="deity-card" onclick="selectDeity('Shri Ram')">
+                        <i class="fa-solid fa-bow-arrow"></i>
+                        <span>Shri Ram</span>
+                    </button>
+                    <button class="deity-card" onclick="selectDeity('Durga Maa')">
+                        <i class="fa-solid fa-crown"></i>
+                        <span>Durga Maa</span>
+                    </button>
+                </div>
+
+                <!-- Chanting & Audio Player Section -->
+                <div class="mantra-player-card">
+                    <h3><i class="fa-solid fa-music"></i> Hymns and Mantras</h3>
+                    <div class="audio-visualizer">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    
+                    <div class="now-playing">
+                        <span id="current-track-title">Chanting of Mantras</span>
+                        <p id="current-mantra-name">Om Namah Shivaya</p>
+                    </div>
+
+                    <div class="player-controls">
+                        <button id="play-btn" class="control-btn play"><i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <!-- Playlist -->
+                    <ul class="playlist">
+                        <li class="track active" onclick="playMantra('Om Namah Shivaya')">
+                            <span>Om Namah Shivaya</span>
+                            <i class="fa-solid fa-volume-high"></i>
+                        </li>
+                        <li class="track" onclick="playMantra('Hanuman Chalisa')">
+                            <span>Hanuman Chalisa</span>
+                            <i class="fa-solid fa-play"></i>
+                        </li>
+                        <li class="track" onclick="playMantra('Mahamrityunjaya Mantra')">
+                            <span>Mahamrityunjaya Mantra</span>
+                            <i class="fa-solid fa-play"></i>
+                        </li>
+                        <li class="track" onclick="playMantra('Shri Ram Dhun')">
+                            <span>Shri Ram Dhun</span>
+                            <i class="fa-solid fa-play"></i>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- CENTER PANEL: Hero Section -->
+            <section class="panel center-panel">
+                <div class="hero-card">
+                    <div class="hero-image-wrapper">
+                        <!-- Insert your devotional hero image path here -->
+                        <img src="shiv.jpg" alt="Devotion to Lord Shiva" id="hero-img">
+                        <div class="hero-overlay">
+                            <h2>Experience The Divine</h2>
+                            <p class="hero-quote">"A Modern Seeker's Journey into Sacred Consciousness"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: Schedule & Devotional Blog -->
+            <aside class="panel right-panel">
+                <!-- Daily Aarti Schedule -->
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-bell"></i> Daily Aarti Schedule</h3>
+                    <div class="schedule-item">
+                        <div>
+                            <strong>Morning Aarti</strong>
+                            <p>Monday to Sunday</p>
+                        </div>
+                        <span class="time-badge">06:00 AM</span>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <strong>Evening Aarti</strong>
+                            <p>Monday to Sunday</p>
+                        </div>
+                        <span class="time-badge">07:00 PM</span>
+                    </div>
+                </div>
+
+                <!-- Devotional Articles -->
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-book-open"></i> Devotional Blog</h3>
+                    <article class="blog-item">
+                        <h4>The Power of Shiva's Damaru</h4>
+                        <p>Discover how cosmic sounds create balance in consciousness...</p>
+                    </article>
+                    <article class="blog-item">
+                        <h4>Ramayana Tales</h4>
+                        <p>Lessons of righteousness and devotion from the life of Shri Ram...</p>
+                    </article>
+                </div>
+            </aside>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <p>Website designed and curated by <strong>Pratham Dada</strong> &copy; 2026. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
