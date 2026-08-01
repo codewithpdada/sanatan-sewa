@@ -51,8 +51,9 @@
 
                 <!-- Chanting & Audio Player Section -->
                 <div class="mantra-player-card">
-                    <h3><i class="fa-solid fa-music"></i> Hymns and Mantras</h3>
-                    <div class="audio-visualizer">
+                    <h3><i class="fa-solid fa-music"></i> Lakhbir Singh Lakkha Bhakti Special</h3>
+                    
+                    <div class="audio-visualizer" id="visualizer">
                         <div class="bar"></div>
                         <div class="bar"></div>
                         <div class="bar"></div>
@@ -61,30 +62,68 @@
                     </div>
                     
                     <div class="now-playing">
-                        <span id="current-track-title">Chanting of Mantras</span>
-                        <p id="current-mantra-name">Om Namah Shivaya</p>
+                        <span id="current-track-artist">Lakhbir Singh Lakkha</span>
+                        <p id="current-mantra-name">Pyara Saja Hai Tera Dwar Bhawani</p>
                     </div>
+
+                    <!-- Audio Element for Streaming -->
+                    <audio id="main-audio-player" src=""></audio>
 
                     <div class="player-controls">
-                        <button id="play-btn" class="control-btn play"><i class="fa-solid fa-play"></i></button>
+                        <button id="prev-btn" class="control-btn" onclick="prevTrack()"><i class="fa-solid fa-backward-step"></i></button>
+                        <button id="play-btn" class="control-btn play" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
+                        <button id="next-btn" class="control-btn" onclick="nextTrack()"><i class="fa-solid fa-forward-step"></i></button>
                     </div>
 
-                    <!-- Playlist -->
-                    <ul class="playlist">
-                        <li class="track active" onclick="playMantra('Om Namah Shivaya')">
-                            <span>Om Namah Shivaya</span>
+                    <!-- Playlist featuring Lakhbir Singh Lakkha Hits -->
+                    <ul class="playlist" id="playlist-container">
+                        <li class="track active" onclick="playMantra(0)">
+                            <div class="track-info">
+                                <strong>Pyara Saja Hai Tera Dwar</strong>
+                                <small>Durga Maa Bhajan</small>
+                            </div>
                             <i class="fa-solid fa-volume-high"></i>
                         </li>
-                        <li class="track" onclick="playMantra('Hanuman Chalisa')">
-                            <span>Hanuman Chalisa</span>
+                        <li class="track" onclick="playMantra(1)">
+                            <div class="track-info">
+                                <strong>Ram Na Milenge Hanuman Ke Bina</strong>
+                                <small>Shri Hanuman / Ram Bhajan</small>
+                            </div>
                             <i class="fa-solid fa-play"></i>
                         </li>
-                        <li class="track" onclick="playMantra('Mahamrityunjaya Mantra')">
-                            <span>Mahamrityunjaya Mantra</span>
+                        <li class="track" onclick="playMantra(2)">
+                            <div class="track-info">
+                                <strong>Keejo Kesari Ke Laal</strong>
+                                <small>Shri Hanuman Bhajan</small>
+                            </div>
                             <i class="fa-solid fa-play"></i>
                         </li>
-                        <li class="track" onclick="playMantra('Shri Ram Dhun')">
-                            <span>Shri Ram Dhun</span>
+                        <li class="track" onclick="playMantra(3)">
+                            <div class="track-info">
+                                <strong>Bholenath Ka Damru Bol Raha Hai</strong>
+                                <small>Shri Shiva Bhajan</small>
+                            </div>
+                            <i class="fa-solid fa-play"></i>
+                        </li>
+                        <li class="track" onclick="playMantra(4)">
+                            <div class="track-info">
+                                <strong>Maiya Ka Chola Hai Rangla</strong>
+                                <small>Durga Maa Bhajan</small>
+                            </div>
+                            <i class="fa-solid fa-play"></i>
+                        </li>
+                        <li class="track" onclick="playMantra(5)">
+                            <div class="track-info">
+                                <strong>Shri Hanuman Chalisa</strong>
+                                <small>Devotional Chanting</small>
+                            </div>
+                            <i class="fa-solid fa-play"></i>
+                        </li>
+                        <li class="track" onclick="playMantra(6)">
+                            <div class="track-info">
+                                <strong>Are Dwaar Paalo Kanhaiya Se Keh Do</strong>
+                                <small>Shri Krishna Bhajan</small>
+                            </div>
                             <i class="fa-solid fa-play"></i>
                         </li>
                     </ul>
@@ -95,11 +134,11 @@
             <section class="panel center-panel">
                 <div class="hero-card">
                     <div class="hero-image-wrapper">
-                        <!-- Insert your devotional hero image path here -->
+                        <!-- Devotional hero image path -->
                         <img src="images/shiv.png" alt="Devotion to Lord Shiva" id="hero-img">
                         <div class="hero-overlay">
-                            <h2>Experience The Divine</h2>
-                            <p class="hero-quote">"A Modern Seeker's Journey into Sacred Consciousness"</p>
+                            <h2 id="hero-deity-title">Experience The Divine</h2>
+                            <p class="hero-quote" id="hero-deity-quote">"A Modern Seeker's Journey into Sacred Consciousness"</p>
                         </div>
                     </div>
                 </div>
@@ -112,6 +151,13 @@
                     <h3><i class="fa-solid fa-bell"></i> Daily Aarti Schedule</h3>
                     <div class="schedule-item">
                         <div>
+                            <strong>Mangala Aarti</strong>
+                            <p>Monday to Sunday</p>
+                        </div>
+                        <span class="time-badge">05:00 AM</span>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
                             <strong>Morning Aarti</strong>
                             <p>Monday to Sunday</p>
                         </div>
@@ -119,7 +165,7 @@
                     </div>
                     <div class="schedule-item">
                         <div>
-                            <strong>Evening Aarti</strong>
+                            <strong>Evening Sandhya Aarti</strong>
                             <p>Monday to Sunday</p>
                         </div>
                         <span class="time-badge">07:00 PM</span>
@@ -128,14 +174,14 @@
 
                 <!-- Devotional Articles -->
                 <div class="info-card">
-                    <h3><i class="fa-solid fa-book-open"></i> Devotional Blog</h3>
+                    <h3><i class="fa-solid fa-book-open"></i> Devotional Articles</h3>
+                    <article class="blog-item">
+                        <h4>The Voice of Devotion: Lakhbir Singh Lakkha</h4>
+                        <p>How Lakkha ji's power-packed voice brought millions closer to Mata Rani & Lord Hanuman...</p>
+                    </article>
                     <article class="blog-item">
                         <h4>The Power of Shiva's Damaru</h4>
                         <p>Discover how cosmic sounds create balance in consciousness...</p>
-                    </article>
-                    <article class="blog-item">
-                        <h4>Ramayana Tales</h4>
-                        <p>Lessons of righteousness and devotion from the life of Shri Ram...</p>
                     </article>
                 </div>
             </aside>
