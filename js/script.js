@@ -37,23 +37,23 @@ const lakkhaSongs = [
     }
 ];
 
-// Deity Content Configurations
+// Deity Content Configurations with local folder images
 const deityConfig = {
     "Shri Shiva": {
         quote: '"Om Namah Shivaya — Embracing the infinite inner light and eternal calm."',
-        file: "images/shiv.png"
+        image: "images/shiv.png"
     },
     "Shri Hanuman": {
         quote: '"Sankat Mochan Mahabali Hanuman — The embodiment of devotion, courage, and selfless service."',
-        image: "https://pin.it/750AkXPvh?q=80&w=1200&auto=format&fit=crop"
+        image: "images/hanuman.jpg"
     },
     "Shri Ram": {
         quote: '"Maryada Purushottam Shri Ram — Eternal embodiment of righteousness, truth, and compassion."',
-        image: "https://images.unsplash.com/photo-1590073844006-33379778ae09?q=80&w=1200&auto=format&fit=crop"
+        image: "images/ram.jpg"
     },
     "Durga Maa": {
         quote: '"Jai Mata Di — Supreme Shakti, radiating eternal strength, love, and divine grace."',
-        image: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?q=80&w=1200&auto=format&fit=crop"
+        image: "images/durga.jpg"
     }
 };
 
