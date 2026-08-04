@@ -41,7 +41,7 @@ const lakkhaSongs = [
 const deityConfig = {
     "Shri Shiva": {
         quote: '"Om Namah Shivaya — Embracing the infinite inner light and eternal calm."',
-        image: "images/shiv.png q=80&w=1200&auto=format&fit=crop"
+        image: "images/shiv.png"
     },
     "Shri Hanuman": {
         quote: '"Sankat Mochan Mahabali Hanuman — The embodiment of devotion, courage, and selfless service."',
