@@ -1,283 +1,454 @@
-/* --- New Main Navigation Bar Styling --- */
-.main-nav {
-    background: rgba(25, 15, 15, 0.95);
-    border: 1px solid #d4af37;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+/* --- Global Reset & Color Variables --- */
+:root {
+    --primary-saffron: #ff9933;
+    --saffron-hover: #e67e00;
+    --gold-accent: #d4af37;
+    --bg-dark: #0c0808;
+    --card-bg: rgba(22, 14, 14, 0.85);
+    --border-gold: rgba(212, 175, 55, 0.35);
+    --text-light: #f5eedc;
+    --text-muted: #b5a999;
 }
 
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.main-nav li {
-    position: relative; /* For dropdown positioning */
-}
-
-.nav-btn {
-    background: transparent;
-    border: none;
-    color: #f1e7d0;
+body {
     font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* --- Garland Banner Top Accent --- */
+.garland-banner {
+    height: 6px;
+    background: linear-gradient(90deg, #ff9933, #d4af37, #ff5500, #d4af37, #ff9933);
+    box-shadow: 0 0 12px rgba(255, 153, 51, 0.9);
+}
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    width: 100%;
+}
+
+/* --- Main Header --- */
+.main-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.brand-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-saffron);
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
+}
+
+.brand-subtitle {
+    font-size: 0.95rem;
+    color: var(--gold-accent);
+    letter-spacing: 5px;
     font-weight: 600;
-    padding: 15px 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-top: 2px;
 }
 
-.nav-btn i {
-    color: #ff9933;
+/* --- Dashboard Responsive Grid Layout --- */
+.dashboard {
+    display: grid;
+    grid-template-columns: 360px 1fr 320px;
+    gap: 22px;
 }
 
-.nav-btn:hover, .nav-btn.active {
-    color: #ff9933;
-    background: rgba(255, 153, 51, 0.1);
-}
-
-/* Dropdown styling */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #1a1010;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-    z-index: 100;
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    border-radius: 8px;
-    top: 100%; /* Below the nav bar */
-    left: 0;
-}
-
-.dropdown-content a {
-    color: #f1e7d0;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9rem;
-    transition: background 0.2s;
-}
-
-.dropdown-content a:hover {
-    background-color: rgba(255, 153, 51, 0.2);
-    color: #ff9933;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-icon {
-    font-size: 0.8rem;
-    margin-left: 5px;
-    color: rgba(241, 231, 208, 0.7);
-}
-
-/* --- Decoupled Playlist Styling (Moved outside player card) --- */
-/* The playlist now takes a full panel in the audio section */
-#audio-panel .playlist {
-    max-height: 400px; /* Taller when separate */
-    padding-right: 10px;
-}
-
-/* Layout for the Audio Section panels */
-.panel-flex {
-    display: flex;
-    gap: 20px;
-}
-
-@media (max-width: 1024px) {
-    .panel-flex {
-        flex-direction: column;
+@media (max-width: 1100px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+    .center-panel {
+        grid-column: span 2;
+        order: -1;
     }
 }
 
-/* Layout for the Readings Section panels */
-.reading-flex {
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    .center-panel {
+        grid-column: span 1;
+    }
+    .brand-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* --- Panels & Cards Layout --- */
+.panel {
     display: flex;
+    flex-direction: column;
     gap: 20px;
 }
 
-.reading-nav {
-    flex: 0 0 280px;
+.deity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
 
-.reading-display {
-    flex: 1;
-}
-
-/* Sub-navigation buttons for Readings */
-.read-nav-btn {
-    width: 100%;
-    background: rgba(30, 20, 20, 0.8);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    color: #f1e7d0;
-    padding: 12px;
-    text-align: left;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-}
-
-.read-nav-btn:hover, .read-nav-btn.active {
-    background: rgba(255, 153, 51, 0.15);
-    border-color: #ff9933;
-    color: #ff9933;
-}
-
-/* Reading content display area */
-.reading-viewer {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.8;
-    color: #e6dac0;
-    padding: 10px;
-    max-height: 600px;
-    overflow-y: auto;
-}
-
-.reading-viewer h4 {
-    font-family: 'Cinzel', serif;
-    color: #ff9933;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.reading-viewer p {
-    margin-bottom: 15px;
-}
-
-/* Placeholder/Error text */
-.placeholder-text, .error-text {
-    text-align: center;
-    font-style: italic;
-    color: #b3b3b3;
-    padding: 40px 0;
-}
-
-.error-text {
-    color: #ff4444;
-}
-
-/* --- Panel Display System --- */
-.content-panel {
-    display: none; /* Hidden by default */
-    width: 100%;
-}
-
-.content-panel.active {
-    display: block; /* Shown when active */
-    animation: fadeIn 0.5s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Special centering for the Japa card */
-.japa-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-}
-
-/* Utility full-width info card (for schedule/articles) */
-.full-width {
-    width: 100%;
-}
-
-/* Utility decoupling for panel structures */
-#japa-panel .panel, #aarti-panel .panel, #articles-panel .panel {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* --- Mantra Japa Counter Styling --- */
-.japa-card {
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
-}
-
-.counter-display {
-    background: #090606;
-    border: 2px solid #ff9933;
+.deity-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-gold);
+    color: var(--text-light);
+    padding: 16px;
     border-radius: 12px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: inset 0 0 10px rgba(255, 153, 51, 0.3);
-}
-
-.count-number {
-    font-family: 'Cinzel', serif;
-    font-size: 3.5rem;
-    color: #ffffff;
-    font-weight: 800;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    display: block;
-    line-height: 1;
-}
-
-.count-label {
-    font-size: 0.8rem;
-    color: #d4af37;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 5px;
-}
-
-.counter-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.japa-btn {
-    border: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.japa-btn.increment {
-    background: #ff9933;
+.deity-card i {
+    font-size: 1.6rem;
+    color: var(--primary-saffron);
+    transition: transform 0.3s ease;
+}
+
+.deity-card:hover {
+    border-color: var(--primary-saffron);
+    transform: translateY(-2px);
+}
+
+.deity-card.active {
+    background: linear-gradient(135deg, var(--primary-saffron), #e65100);
+    color: #0f0a0a;
+    border-color: transparent;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(255, 153, 51, 0.4);
+}
+
+.deity-card.active i, .deity-card:hover i {
+    transform: scale(1.1);
+}
+
+.deity-card.active i {
     color: #0f0a0a;
 }
 
-.japa-btn.increment:hover {
-    background: #e68a2e;
-    transform: scale(1.05);
+/* --- Player & Info Cards --- */
+.mantra-player-card, .info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-gold);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 22px;
 }
 
-.japa-btn.reset {
-    background: transparent;
-    border: 1px solid rgba(241, 231, 208, 0.4);
-    color: rgba(241, 231, 208, 0.8);
+.mantra-player-card h3, .info-card h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-saffron);
+    font-size: 1.15rem;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
-.japa-btn.reset:hover {
-    border-color: #ff4444;
-    color: #ff4444;
-    background: rgba(255, 68, 68, 0.1);
+/* --- Animated Visualizer --- */
+.audio-visualizer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+    height: 32px;
+    margin: 15px 0;
+}
+
+.audio-visualizer .bar {
+    width: 6px;
+    height: 8px;
+    background-color: var(--primary-saffron);
+    border-radius: 3px;
+    transition: height 0.2s ease;
+}
+
+.audio-visualizer.playing .bar {
+    animation: bounce 0.6s infinite alternate;
+}
+
+.audio-visualizer.playing .bar:nth-child(1) { animation-delay: 0.1s; }
+.audio-visualizer.playing .bar:nth-child(2) { animation-delay: 0.3s; }
+.audio-visualizer.playing .bar:nth-child(3) { animation-delay: 0.2s; }
+.audio-visualizer.playing .bar:nth-child(4) { animation-delay: 0.4s; }
+.audio-visualizer.playing .bar:nth-child(5) { animation-delay: 0.15s; }
+
+@keyframes bounce {
+    0% { height: 6px; }
+    100% { height: 30px; }
+}
+
+.now-playing {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#current-track-artist {
+    font-size: 0.8rem;
+    color: var(--gold-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#current-mantra-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 4px;
+}
+
+/* --- Controls & Volume --- */
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 15px;
+}
+
+.control-btn {
+    background: transparent;
+    border: 1px solid var(--border-gold);
+    color: var(--gold-accent);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-btn.play {
+    width: 52px;
+    height: 52px;
+    background: var(--primary-saffron);
+    color: #0f0a0a;
+    border: none;
+    font-size: 1.3rem;
+    box-shadow: 0 0 15px rgba(255, 153, 51, 0.4);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--primary-saffron);
+    color: var(--primary-saffron);
+}
+
+.control-btn.play:hover {
+    color: #0f0a0a;
+    background: var(--saffron-hover);
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 18px;
+    color: var(--gold-accent);
+    font-size: 0.85rem;
+}
+
+.volume-container input[type="range"] {
+    accent-color: var(--primary-saffron);
+    cursor: pointer;
+    width: 110px;
+}
+
+/* --- Playlist Styling --- */
+.playlist {
+    list-style: none;
+    max-height: 240px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.playlist::-webkit-scrollbar {
+    width: 5px;
+}
+.playlist::-webkit-scrollbar-thumb {
+    background: var(--primary-saffron);
+    border-radius: 4px;
+}
+
+.track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+}
+
+.track:hover {
+    background: rgba(255, 153, 51, 0.12);
+}
+
+.track.active {
+    background: rgba(255, 153, 51, 0.22);
+    border-left: 4px solid var(--primary-saffron);
+}
+
+.track-info strong {
+    display: block;
+    font-size: 0.88rem;
+    color: #ffffff;
+}
+
+.track-info small {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.track i {
+    color: var(--primary-saffron);
+    font-size: 0.95rem;
+}
+
+/* --- Hero Center Section --- */
+.hero-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-gold);
+    height: 100%;
+    min-height: 480px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.hero-image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 35px 25px 25px;
+    background: linear-gradient(to top, rgba(12, 8, 8, 0.98), rgba(12, 8, 8, 0.6) 60%, transparent);
+    text-align: center;
+}
+
+.hero-overlay h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--primary-saffron);
+    text-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
+}
+
+.hero-quote {
+    font-style: italic;
+    color: var(--text-light);
+    margin-top: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- Daily Schedule & Articles --- */
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.schedule-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-item strong {
+    font-size: 0.9rem;
+}
+
+.schedule-item p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.time-badge {
+    background: var(--primary-saffron);
+    color: #0f0a0a;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.blog-item {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
+}
+
+.blog-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.blog-item h4 {
+    color: var(--gold-accent);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.blog-item p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* --- Footer --- */
+.main-footer {
+    text-align: center;
+    padding: 24px 0 10px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.main-footer strong {
+    color: var(--primary-saffron);
 }
