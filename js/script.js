@@ -45,7 +45,7 @@ const deityConfig = {
     },
     "Shri Hanuman": {
         quote: '"Sankat Mochan Mahabali Hanuman — The embodiment of devotion, courage, and selfless service."',
-        image: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?q=80&w=1200&auto=format&fit=crop"
+        image: "https://pin.it/750AkXPvh?q=80&w=1200&auto=format&fit=crop"
     },
     "Shri Ram": {
         quote: '"Maryada Purushottam Shri Ram — Eternal embodiment of righteousness, truth, and compassion."',
