@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanatan Sewa by Pratham Dada</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts for Devotional Typography -->
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Top Garland Decoration Banner -->
+    <!-- Top Garland Banner -->
     <div class="garland-banner"></div>
 
     <div class="app-container">
@@ -24,130 +28,95 @@
             <p class="brand-subtitle">BY PRATHAM DADA</p>
         </header>
 
-        <!-- Main Navigation Bar -->
-        <nav class="main-nav">
-            <ul>
-                <li><button class="nav-btn active" onclick="showPanel('home-panel', this)"><i class="fa-solid fa-house"></i> Home</button></li>
-                <li class="dropdown">
-                    <button class="nav-btn" onclick="showPanel('audio-panel', this)"><i class="fa-solid fa-music"></i> Bhakti Audio <i class="fa-solid fa-chevron-down dropdown-icon"></i></button>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="filterAudioByDeity('Shri Shiva')">Shri Shiva</a>
-                        <a href="#" onclick="filterAudioByDeity('Shri Hanuman')">Shri Hanuman</a>
-                        <a href="#" onclick="filterAudioByDeity('Durga Maa')">Durga Maa</a>
-                        <a href="#" onclick="filterAudioByDeity('Lakhbir Singh Lakkha')">Lakkha Special</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <button class="nav-btn" onclick="showPanel('readings-panel', this)"><i class="fa-solid fa-book-open"></i> Readings <i class="fa-solid fa-chevron-down dropdown-icon"></i></button>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="showReading('shiv_tandav')">Shiva Tandava Stotram</a>
-                        <a href="#" onclick="showReading('hanuman_chalisa')">Hanuman Chalisa</a>
-                        <a href="#" onclick="showReading('durga_chalisa')">Durga Chalisa</a>
-                    </div>
-                </li>
-                <li><button class="nav-btn" onclick="showPanel('japa-panel', this)"><i class="fa-solid fa-calculator"></i> Mantra Japa</button></li>
-                <li><button class="nav-btn" onclick="showPanel('aarti-panel', this)"><i class="fa-solid fa-bell"></i> Aarti Schedule</button></li>
-                <li><button class="nav-btn" onclick="showPanel('articles-panel', this)"><i class="fa-solid fa-feather"></i> Articles</button></li>
-            </ul>
-        </nav>
+        <!-- Main Dashboard Content -->
+        <main class="dashboard">
+            
+            <!-- LEFT PANEL: Deity Navigation & Audio Player -->
+            <aside class="panel left-panel">
+                <!-- Deity Quick Selection Grid -->
+                <div class="deity-grid">
+                    <button class="deity-card active" onclick="selectDeity('Shri Shiva')">
+                        <i class="fa-solid fa-om"></i>
+                        <span>Shri Shiva</span>
+                    </button>
+                    <button class="deity-card" onclick="selectDeity('Shri Hanuman')">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                        <span>Shri Hanuman</span>
+                    </button>
+                    <button class="deity-card" onclick="selectDeity('Shri Ram')">
+                        <i class="fa-solid fa-sun"></i>
+                        <span>Shri Ram</span>
+                    </button>
+                    <button class="deity-card" onclick="selectDeity('Durga Maa')">
+                        <i class="fa-solid fa-crown"></i>
+                        <span>Durga Maa</span>
+                    </button>
+                </div>
 
-        <!-- Main Dashboard Content Area -->
-        <main class="dashboard-content">
+                <!-- Chanting & Audio Player Card -->
+                <div class="mantra-player-card">
+                    <h3><i class="fa-solid fa-compact-disc fa-spin-slow"></i> Lakhbir Singh Lakkha Special</h3>
+                    
+                    <div class="audio-visualizer" id="visualizer">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    
+                    <div class="now-playing">
+                        <span id="current-track-artist">Lakhbir Singh Lakkha • Durga Maa</span>
+                        <p id="current-mantra-name">Pyara Saja Hai Tera Dwar</p>
+                    </div>
 
-            <!-- --- Panel 1: HOME (Hero Card) --- -->
-            <section id="home-panel" class="content-panel active">
+                    <!-- Hidden Native Audio Element -->
+                    <audio id="main-audio-player"></audio>
+
+                    <!-- Player Controls -->
+                    <div class="player-controls">
+                        <button id="prev-btn" class="control-btn" onclick="prevTrack()" title="Previous">
+                            <i class="fa-solid fa-backward-step"></i>
+                        </button>
+                        <button id="play-btn" class="control-btn play" onclick="togglePlay()" title="Play/Pause">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button id="next-btn" class="control-btn" onclick="nextTrack()" title="Next">
+                            <i class="fa-solid fa-forward-step"></i>
+                        </button>
+                    </div>
+
+                    <!-- Volume Control Bar -->
+                    <div class="volume-container">
+                        <i class="fa-solid fa-volume-low"></i>
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8" oninput="changeVolume(this.value)">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </div>
+
+                    <!-- Interactive Track Playlist -->
+                    <ul class="playlist" id="playlist-container">
+                        <!-- Playlist items are generated dynamically by JS or populated here -->
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- CENTER PANEL: Dynamic Hero Feature -->
+            <section class="panel center-panel">
                 <div class="hero-card">
                     <div class="hero-image-wrapper">
-                        <img src="images/shiv.png" alt="Devotion to Lord Shiva" id="hero-img">
+                        <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?q=80&w=1200&auto=format&fit=crop" alt="Lord Shiva Devotion" id="hero-img">
                         <div class="hero-overlay">
-                            <h2 id="hero-deity-title">Experience The Divine</h2>
-                            <p class="hero-quote" id="hero-deity-quote">"A Modern Seeker's Journey into Sacred Consciousness"</p>
+                            <h2 id="hero-deity-title">Shri Shiva</h2>
+                            <p class="hero-quote" id="hero-deity-quote">"Om Namah Shivaya — Embracing the infinite inner light and eternal calm."</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- --- Panel 2: BHAKTI AUDIO --- -->
-            <section id="audio-panel" class="content-panel panel-flex">
-                <!-- Current Audio Player -->
-                <aside class="panel left-panel">
-                    <div class="mantra-player-card">
-                        <h3><i class="fa-solid fa-music"></i> Lakhbir Singh Lakkha</h3>
-                        
-                        <div class="audio-visualizer" id="visualizer">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
-                        
-                        <div class="now-playing">
-                            <span id="current-track-artist">Lakhbir Singh Lakkha</span>
-                            <p id="current-mantra-name">Pyara Saja Hai Tera Dwar Bhawani</p>
-                        </div>
-
-                        <!-- Audio Element for Streaming -->
-                        <audio id="main-audio-player" src=""></audio>
-
-                        <div class="player-controls">
-                            <button id="prev-btn" class="control-btn" onclick="prevTrack()"><i class="fa-solid fa-backward-step"></i></button>
-                            <button id="play-btn" class="control-btn play" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
-                            <button id="next-btn" class="control-btn" onclick="nextTrack()"><i class="fa-solid fa-forward-step"></i></button>
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Playlist container - separate from player card -->
-                <section class="panel right-panel">
-                    <div class="info-card">
-                        <h3><i class="fa-solid fa-list-ul"></i> Bhakti Special Playlist</h3>
-                        <ul class="playlist" id="playlist-container">
-                            <!-- JS will populate tracks here -->
-                        </ul>
-                    </div>
-                </section>
-            </section>
-
-            <!-- --- Panel 3: READINGS (Stotras & Chalisa) --- -->
-            <section id="readings-panel" class="content-panel reading-flex">
-                <aside class="panel reading-nav">
-                    <div class="info-card">
-                        <h3><i class="fa-solid fa-book"></i> Texts</h3>
-                        <button class="read-nav-btn active" onclick="showReading('shiv_tandav', this)">Shiva Tandava Stotram</button>
-                        <button class="read-nav-btn" onclick="showReading('hanuman_chalisa', this)">Hanuman Chalisa</button>
-                        <button class="read-nav-btn" onclick="showReading('durga_chalisa', this)">Durga Chalisa</button>
-                    </div>
-                </aside>
-                
-                <section class="panel reading-display info-card">
-                    <div id="reading-content-area" class="reading-viewer">
-                        <!-- Reading Text populated here by JS -->
-                        <p class="placeholder-text">Select a text from the menu to start reading.</p>
-                    </div>
-                </section>
-            </section>
-
-            <!-- --- Panel 4: MANTRA JAPA COUNTER --- -->
-            <section id="japa-panel" class="content-panel japa-center">
-                <div class="japa-card info-card">
-                    <h3><i class="fa-solid fa-calculator"></i> Mantra Japa Counter</h3>
-                    
-                    <div class="counter-display">
-                        <span id="japa-count" class="count-number">0</span>
-                        <p class="count-label">Japa Completed</p>
-                    </div>
-
-                    <div class="counter-controls">
-                        <button class="japa-btn increment" onclick="incrementJapa()">COUNT (+1)</button>
-                        <button class="japa-btn reset" onclick="resetJapa()"><i class="fa-solid fa-rotate-right"></i> Reset</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- --- Panel 5: AARTI SCHEDULE --- -->
-            <section id="aarti-panel" class="content-panel">
-                <div class="info-card full-width">
+            <!-- RIGHT PANEL: Schedule & Devotional Articles -->
+            <aside class="panel right-panel">
+                <!-- Daily Aarti Schedule Card -->
+                <div class="info-card">
                     <h3><i class="fa-solid fa-bell"></i> Daily Aarti Schedule</h3>
                     <div class="schedule-item">
                         <div>
@@ -156,21 +125,35 @@
                         </div>
                         <span class="time-badge">05:00 AM</span>
                     </div>
-                    <!-- (Remaining Schedule Items...) -->
+                    <div class="schedule-item">
+                        <div>
+                            <strong>Morning Shringhar Aarti</strong>
+                            <p>Monday to Sunday</p>
+                        </div>
+                        <span class="time-badge">06:00 AM</span>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <strong>Evening Sandhya Aarti</strong>
+                            <p>Monday to Sunday</p>
+                        </div>
+                        <span class="time-badge">07:00 PM</span>
+                    </div>
                 </div>
-            </section>
 
-            <!-- --- Panel 6: ARTICLES --- -->
-            <section id="articles-panel" class="content-panel">
-                <div class="info-card full-width">
+                <!-- Devotional Articles Card -->
+                <div class="info-card">
                     <h3><i class="fa-solid fa-book-open"></i> Devotional Articles</h3>
                     <article class="blog-item">
                         <h4>The Voice of Devotion: Lakhbir Singh Lakkha</h4>
-                        <p>How Lakkha ji's power-packed voice brought millions closer to Mata Rani & Lord Hanuman...</p>
+                        <p>Discover how Lakkha ji's legendary vocals brought heart-touching devotional vibes into millions of homes...</p>
                     </article>
-                    <!-- (Remaining Blog Items...) -->
+                    <article class="blog-item">
+                        <h4>The Power of Shiva's Damaru</h4>
+                        <p>Explore the cosmic rhythm of Lord Shiva's Damaru and its deep connection with universal sound frequency...</p>
+                    </article>
                 </div>
-            </section>
+            </aside>
 
         </main>
 
@@ -180,6 +163,7 @@
         </footer>
     </div>
 
+    <!-- Script File -->
     <script src="js/script.js"></script>
 </body>
 </html>
