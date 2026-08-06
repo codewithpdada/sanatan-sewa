@@ -42,11 +42,11 @@ const deityConfig = {
     "Shri Shiva": {
         quote: '"Om Namah Shivaya — Embracing the infinite inner light and eternal calm."',
         image: "images/shiv.png"
-    },
+   },
     "Shri Hanuman": {
         quote: '"Sankat Mochan Mahabali Hanuman — The embodiment of devotion, courage, and selfless service."',
-        image: "images/hanuman.jpg"
-    },
+        video: "videos/video-87586.mp4"
+    }        
     "Shri Ram": {
         quote: '"Maryada Purushottam Shri Ram — Eternal embodiment of righteousness, truth, and compassion."',
         image: "images/ram.jpg"
